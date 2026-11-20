@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07111f">
+  <title>StoryMind AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient-background" aria-hidden="true">
+    <div class="grid-overlay"></div>
+    <div class="orb orb-cyan"></div>
+    <div class="orb orb-blue"></div>
+  </div>
+
+  <header class="site-header">
+    <div class="header-content">
+      <a class="brand" href="#dashboard" aria-label="StoryMind AI home">
+        <span class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="m12 2 2.45 6.55L21 11l-6.55 2.45L12 20l-2.45-6.55L3 11l6.55-2.45L12 2Z" fill="currentColor"/>
+            <path d="m19 15 .95 2.55L22.5 18.5l-2.55.95L19 22l-.95-2.55-2.55-.95 2.55-.95L19 15Z" fill="currentColor" opacity=".65"/>
+          </svg>
+        </span>
+        <span class="brand-name">StoryMind <span>AI</span></span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Main navigation">
+        <a class="nav-link is-active" href="#dashboard" aria-current="page">Dashboard</a>
+        <a class="nav-link" href="#jira-connection">Jira Connection</a>
+        <a class="nav-link" href="#history">History</a>
+        <a class="nav-link" href="#api-docs">API Docs</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="connection-badge">
+          <span class="connection-dot" aria-hidden="true"></span>
+          <span>n8n Connected</span>
+        </div>
+        <div class="profile-avatar" aria-label="User profile: PM">PM</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-shell" id="dashboard" aria-label="StoryMind AI dashboard">
+    <div class="dashboard-layout">
+      <aside class="control-sidebar" aria-label="Story review controls">
+        <section class="glass-card analyzer-card" aria-labelledby="analyzer-title">
+          <div class="card-heading">
+            <div>
+              <p class="eyebrow">STORY QUALITY</p>
+              <h1 id="analyzer-title">Jira Analyzer</h1>
+            </div>
+            <span class="analyzer-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="m12 2.8 8.2 4.6v9.2L12 21.2l-8.2-4.6V7.4L12 2.8Z" stroke="currentColor" stroke-width="1.5"/>
+                <path d="m3.9 7.6 8.1 4.7 8.1-4.7M12 12.3v8.4" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            </span>
+          </div>
+
+          <form class="analyzer-form" id="review-form" novalidate>
+            <label class="field-label" for="story-key">Jira Story Key</label>
+            <div class="story-key-field">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="m12 2.8 8.2 4.6v9.2L12 21.2l-8.2-4.6V7.4L12 2.8Z" stroke="currentColor" stroke-width="1.6"/>
+                <path d="m3.9 7.6 8.1 4.7 8.1-4.7M12 12.3v8.4" stroke="currentColor" stroke-width="1.6"/>
+              </svg>
+              <input id="story-key" name="story-key" type="text" placeholder="e.g. TES-1" autocomplete="off" aria-describedby="story-key-error" aria-invalid="false" required>
+            </div>
+            <p class="field-error" id="story-key-error" role="alert" hidden>Enter a Jira story key to start the review.</p>
+
+            <fieldset class="module-options">
+              <legend>Review modules</legend>
+              <label class="module-option">
+                <input type="checkbox" name="review-module" value="clarity" checked>
+                <span class="custom-checkbox" aria-hidden="true"></span>
+                <span>Clarity &amp; Grammar</span>
+              </label>
+              <label class="module-option">
+                <input type="checkbox" name="review-module" value="acceptance-criteria" checked>
+                <span class="custom-checkbox" aria-hidden="true"></span>
+                <span>Acceptance Criteria</span>
+              </label>
+              <label class="module-option">
+                <input type="checkbox" name="review-module" value="feasibility" checked>
+                <span class="custom-checkbox" aria-hidden="true"></span>
+                <span>Technical Feasibility</span>
+              </label>
+            </fieldset>
+
+            <button class="review-button" type="submit">
+              <span class="review-button-label">Review Story</span>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </form>
+        </section>
+
+        <section class="pro-card" aria-labelledby="pro-title">
+          <span class="pro-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="m12 3 2.2 5.7L20 11l-5.8 2.3L12 19l-2.2-5.7L4 11l5.8-2.3L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="m19 15 .9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15Z" fill="currentColor"/>
+            </svg>
+          </span>
+          <p class="eyebrow">LEVEL UP YOUR WORKFLOW</p>
+          <h2 id="pro-title">Make every story count.</h2>
+          <p class="pro-description">Unlock deeper insights and keep your team moving forward.</p>
+          <a class="pro-link" href="#pro-plan">Explore Pro Plan <span aria-hidden="true">→</span></a>
+        </section>
+      </aside>
+
+      <section class="dashboard-main" aria-label="Review dashboard overview">
+        <div class="metrics-grid">
+          <article class="metric-card metric-blue">
+            <span class="metric-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M7 3.5h7l4 4V20a1 1 0 0 1-1 1H7a2 2 0 0 1-2-2V5.5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M14 3.8v4h4M8.5 13h7m-7 3.5h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <div class="metric-copy">
+              <p class="metric-label">Stories Checked</p>
+              <p class="metric-value">24</p>
+            </div>
+            <span class="metric-trend" aria-label="All time">↗</span>
+          </article>
+
+          <article class="metric-card metric-cyan">
+            <span class="metric-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M12 7v5l3.3 2M16.5 3.5h4v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <div class="metric-copy">
+              <p class="metric-label">Avg Quality Score</p>
+              <p class="metric-value">86<span class="metric-unit">%</span></p>
+            </div>
+            <span class="metric-trend" aria-label="Strong score">↗</span>
+          </article>
+
+          <article class="metric-card metric-mint">
+            <span class="metric-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 3.5 19 6v5.5c0 4.2-2.8 7.6-7 9-4.2-1.4-7-4.8-7-9V6l7-2.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <div class="metric-copy">
+              <p class="metric-label">Jira Sync Status</p>
+              <p class="metric-value metric-status"><span class="status-dot" aria-hidden="true"></span>Active</p>
+            </div>
+          </article>
+        </div>
+
+        <section class="review-workspace" aria-labelledby="workspace-title">
+          <header class="workspace-header">
+            <div>
+              <p class="eyebrow">AI STORY ANALYSIS</p>
+              <h2 id="workspace-title">Review Workspace</h2>
+            </div>
+            <div class="workspace-status">
+              <span class="workspace-tag">READY</span>
+              <span class="analysis-complete-badge" id="analysis-complete-badge" role="status" hidden>
+                <span class="complete-badge-icon" aria-hidden="true">✓</span>
+                ANALYSIS COMPLETE
+              </span>
+            </div>
+          </header>
+
+          <div class="workspace-stage">
+            <div class="workspace-state workspace-waiting">
+              <div class="radar-visual" aria-hidden="true">
+                <span class="radar-ring radar-ring-outer"></span>
+                <span class="radar-ring radar-ring-middle"></span>
+                <span class="radar-ring radar-ring-inner"></span>
+                <span class="radar-center">
+                  <svg viewBox="0 0 32 32" fill="none">
+                    <circle cx="16" cy="16" r="9.5" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="16" cy="16" r="3" fill="currentColor"/>
+                    <path d="M16 2.5v5M16 24.5v5M2.5 16h5m17 0h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="m16 16 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </div>
+              <h3>Ready when you are</h3>
+              <p>Enter a Jira story key and click <strong>Review Story</strong> to begin your analysis.</p>
+            </div>
+
+            <div class="workspace-state workspace-loading" hidden aria-live="polite" aria-busy="true">
+              <span class="laser-scan-beam" aria-hidden="true"></span>
+              <div class="loading-orbit" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <p class="loading-eyebrow">ANALYSIS IN PROGRESS</p>
+              <p class="progress-message" role="status">Preparing analysis...</p>
+              <div class="progress-ticker" aria-hidden="true">
+                <span class="progress-ticker-fill"></span>
+                <span class="progress-ticker-glow"></span>
+              </div>
+            </div>
+
+            <div class="workspace-state workspace-error" role="alert" hidden>
+              <span class="workspace-error-icon" aria-hidden="true">!</span>
+              <h3 class="workspace-error-title">Review couldn't be completed</h3>
+              <p class="workspace-error-message">Check your connection and try again.</p>
+            </div>
+
+            <div class="workspace-state workspace-results" hidden>
+              <div class="results-mark" aria-hidden="true">✓</div>
+              <p class="results-eyebrow">REVIEW RESPONSE</p>
+              <div class="analysis-output" aria-live="polite"></div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </div>
+  </main>
+  <script src="app.js" defer></script>
+</body>
+</html>
